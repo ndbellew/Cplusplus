@@ -1,0 +1,221 @@
+Queue Data Structure 
+- First in first out
+	FIFO
+- insert in elements from the back, and accessing elements from the front
+- a sequential data structure
+the sides are Front-rear/back
+
+Operations
+
+*InitializeQueue
+- Initializes queue to an empty state
+*isEmptyQueue
+-Determines whether the queue is empty. if th equeue is empty, it returns the value true; otherwise it returns
+a false value
+*isFullQueue
+-Determines whether the queue is full. if th equeue is empty, it returns the value true; otherwise it returns
+a false value
+*front
+-returns the front, that is, the first element of thw queue. Inpuut to this operation consists of the queue.
+Prior to this operatio the queue must exist and must not be empty.
+*back
+-Treutnrs the last element of the queue. Input to this operation consists of the queue. Prior
+to this operation the queue must exist and must not be empty.
+*addQueue(push-back/enqueue/push/insert)
+-Adds new lement to the rear of the queue. Input to this operation consists of the queue and the new element.
+Prior to this operation, the queue must exist and not be full
+0-9-8-7-6    0=front 6=rear new number 2
+0-9-8-7-6-2  0=front 2=rear
+*deleteQueue(pop/pop_front)
+- Removes the front element from the queue. Input to this operation consists of the queue. Prior to this operation, the queue must exist
+and must not be empty.
+0-9-8-7-6-2 0=front 2=rear output 0
+9-8-7-6-2 9=front 2=rear
+the number line 0-9-8-7-6-2 is pointed to by 0 1 2 3 4 5 6 when you delete 0 it makes
+1 2 3 4 5 6 constantly deleting the info will increase its space by 1. eventually the numbers
+3-2-3 could be 97 98 99
+* Emplace
+- Similar to insert however because tis fifo emplace adds it last so if you had 1-2-3 where 1 is first, you can emplace 4 and rather than getting 4-1-2-3 it would be 1-2-3-4 where 1 is still the first number that would be popped out.
+
+
+
+==============================================================
+//
+//  queue.h
+//  Queue ADT using dynamic array
+//
+
+#pragma once
+
+#include <iostream>
+#include <cassert>
+
+using namespace std;
+
+template <class Type>
+class Queue
+{
+private:
+    Type *list; // pointer to the array that holds the queue elements
+    int maxSize; //max queue size
+    int count; // number of elements in the queue
+    int queueFront; // index of the first element of the queue
+    int queueLast; // index the last element of the queue
+    void copyQueue(const Queue<Type> &otherQueue);
+public:
+    Queue(int size = 100);
+    // constructor
+    Queue(const Queue<Type> &otherQueue);
+    // copy constructor
+    ~Queue();
+    // destructor
+    const Queue<Type>& operator=(const Queue<Type> &otherQueue);
+    // Overload the assignment operator
+    bool empty() const;
+    // Returns true if queue is empty, otherwise returns false
+    bool full() const;
+    // Returns true if the queue is full, otherwise returns false
+    Type front();
+    // returns the first element of the queue
+    Type back() const;
+    // returns the last element of the queue
+    void push_back(const Type &newItem);
+    // Insert new element to the queue
+    void pop_front();
+    // Remove the next element of the queue
+    int size() const;
+    // Returns the number of elements in the queue
+};
+
+// Class function definitions
+
+template<class Type>
+Queue<Type>::Queue(int size)
+{
+    if (size <=0 )
+    {
+        cout << "Size of the array to hold the queue must be positive. " << endl;
+        cout << "Creating an array of size 100." << endl;
+        maxSize = size;
+    }
+    else
+        maxSize = size;
+    queueFront = 0;
+    queueLast = maxSize - 1;
+    count = 0;
+    list = new Type[maxSize];
+}// end constructor
+
+template<class Type>
+Queue<Type>::Queue(const Queue<Type> &otherQueue)
+{
+    list = nullptr;
+    copyQueue(otherQueue);
+} // end Queue
+
+template<class Type>
+void Queue<Type>::copyQueue(const Queue<Type> &otherQueue)
+{
+    delete [] list;
+    maxSize = otherQueue.maxSize;
+    count = otherQueue.count;
+    queueFront = otherQueue.queueFront;
+    queueLast = otherQueue.queueLast;
+    list = new Type[maxSize];
+    // deep copy otherQueue into this queue
+    //for (int i=0; i<count; i++)
+    //    list[i] = otherQueue.list[i];
+    int i = queueFront;
+    int counter = 0;
+    while(counter < count)
+    {
+        list[i] = otherQueue.list[i];
+        i = (i+1)%maxSize;
+        counter ++;
+    }
+} // end copyQueue
+
+template<class Type>
+Queue<Type>::~Queue()
+{
+    delete [] list;
+} // end ~Queue
+
+template<class Type>
+const Queue<Type>& Queue<Type>::operator=(const Queue<Type> &otherQueue)
+{
+    if (this != &otherQueue) // avoid self-copy
+        copyQueue(otherQueue);
+    
+    return *this;
+} // end operator=
+
+template<class Type>
+bool Queue<Type>::empty() const
+{
+    return (count == 0);
+} // end empty
+
+template<class Type>
+bool Queue<Type>::full() const
+{
+    return (count == maxSize);
+} // end full
+
+template<class Type>
+Type Queue<Type>::front()
+{
+    assert(!empty());
+    return list[queueFront];
+} // end front
+
+template <class Type>
+Type Queue<Type>::back() const
+{
+    assert(!empty());
+    return list[queueLast];
+} //end back
+
+template <class Type>
+void Queue<Type>::push_back(const Type& newElement)
+{
+    if (!full())
+    {
+        queueLast = (queueLast + 1) % maxSize; //use mod
+        //operator to advance queueLast
+        //because the array is circular
+        count++;
+        list[queueLast] = newElement;
+    }
+    else
+        cout << "Cannot add to a full queue." << endl;
+} //end addQueue
+
+template <class Type>
+void Queue<Type>::pop_front()
+{
+    if (!empty())
+    {
+        count--;
+        queueFront = (queueFront + 1) % maxSize; //use the
+        //mod operator to advance queueFront
+        //because the array is circular
+    }
+    else
+        cout << "Cannot remove from an empty queue." << endl;
+} //end pop
+
+template <class Type>
+int Queue<Type>::size() const
+{
+    return count;
+}
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+QUEUE: Sequential Access
+FIFO-First in First out
+LILO-Last in Last out.
+its Array oriented
+
+queueRear=(queueRear+1) & maxQueueSize;//this is used to advance queueRear to next position
+if QueueRear<maxQueueSize-1, then queuRear+1<=maxQueueSize-1, so (queueRear+1)%maxQueuSize=QueueREar+1. if queeuRear==maxQueueSize-1

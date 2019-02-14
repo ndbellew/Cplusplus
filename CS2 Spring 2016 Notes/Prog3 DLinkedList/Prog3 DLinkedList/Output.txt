@@ -1,0 +1,73 @@
+
+
+Sorted by ID.
+1088   Bellew, Nathan
+1915   Bingham, Lucas
+2135   Neely, Dalton
+2835   Betz, Cameron
+3081   Adams, Angelo
+3333   Cooper, Corbin
+3358   Zanoni, Austin
+3612   Hays, Matthew
+4022   Harvey, Sarah
+4485   Alkahmees, Bader
+5003   Hurshman, Randy
+5588   Reynolds, Dustin
+6161   Velasquez, Jesus
+7099   Farr, Jesse
+7234   Solo, Han
+7235   Stark, Kaitlin
+7778   Bouchier, Michael
+7826   Cotton, Nick
+8111   Smith, Amanda
+8193   Pacarar, Shawn
+9822   Sterling, Richard
+
+
+Sorted by Name.
+3081   Adams, Angelo
+4485   Alkahmees, Bader
+1088   Bellew, Nathan
+2835   Betz, Cameron
+1915   Bingham, Lucas
+7778   Bouchier, Michael
+3333   Cooper, Corbin
+7826   Cotton, Nick
+7099   Farr, Jesse
+4022   Harvey, Sarah
+3612   Hays, Matthew
+5003   Hurshman, Randy
+2135   Neely, Dalton
+8193   Pacarar, Shawn
+5588   Reynolds, Dustin
+8111   Smith, Amanda
+7234   Solo, Han
+7235   Stark, Kaitlin
+9822   Sterling, Richard
+6161   Velasquez, Jesus
+3358   Zanoni, Austin
+
+
+ Added Student
+3081   Adams, Angelo
+4485   Alkahmees, Bader
+1088   Bellew, Nathan
+2835   Betz, Cameron
+1915   Bingham, Lucas
+7778   Bouchier, Michael
+3333   Cooper, Corbin
+7826   Cotton, Nick
+7099   Farr, Jesse
+4022   Harvey, Sarah
+3612   Hays, Matthew
+5003   Hurshman, Randy
+2135   Neely, Dalton
+8193   Pacarar, Shawn
+5588   Reynolds, Dustin
+8111   Smith, Amanda
+7234   Solo, Han
+7235   Stark, Kaitlin
+9822   Sterling, Richard
+6161   Velasquez, Jesus
+3358   Zanoni, Austin
+8055 Payne, L

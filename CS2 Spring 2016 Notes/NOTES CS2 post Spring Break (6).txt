@@ -1,0 +1,301 @@
+/*
+ Linked List Example
+ 1. Creates dynamic linked list using forward and backward strategies
+ 2. Traverse nodes in the list
+ 3. Insert new node into the list
+ 4. Delete a node from the list
+ 5. Search the list for a given data and return the node with the data
+ */
+
+#include <iostream>
+
+using namespace std;
+
+struct nodeType
+{
+    int info;
+    nodeType *link;
+};
+
+nodeType *buildListForward()
+{
+    /*
+     // just like using insertEnd method for dynamic array-based list (listType) we created earlier
+     // push_back method for vector STL, etc.
+     
+     Algorithm steps:
+     1. Initialize first and last to nullptr
+     2. For each item in the list
+     	a. Create the new node, newNode
+     	b. Store the item/data in newNode
+     	c. Store nullptr to the link of the newNode
+     	d. Check if the list is empty
+     		i. If the list is empty:
+     			a. Make first and last point to newNode
+     		ii. If the list is not empty
+    			a. append newNode at the end of the list
+    	 		b. update the last node by pointing it to the newNode
+     */
+    nodeType *first=nullptr, *last=nullptr; // To keep track of the first and the last node
+    nodeType *newNode=nullptr; // temp node to create and add a new node into the list
+    int num; // temp var to read data into
+    
+    
+    // create temp node with data
+    cout << "Enter some numbers ending with -999: ";
+    cin >> num;
+    while(num != -999)
+    {
+        newNode = new nodeType;
+        newNode->info = num; // store num into info
+        newNode->link = nullptr;
+        
+        if (first == nullptr) // check if the node is empty
+        {   // make the first and last node point to newNode
+            first = newNode;
+            last = newNode;
+        }
+        else // list is not empty
+        {
+            last->link = newNode; // append newNode at the end of the list
+            last = newNode; //update the last node by pointing it to the newNode
+        }
+        cin >> num;
+    }
+    return first;
+}
+
+nodeType *buildListBackward()
+{
+    /*
+     // just like using insertAt(0, newNode) for dynamic array-based list (listType) we created earlier
+     // push_front method in list STL, etc.
+     Algorithm steps:
+     1. Initialize first to nullptr
+     2. For each item in the list
+     a. Create the new node, newNode
+     b. Store the item/data in newNode
+     c. Insert newNode before first
+     d. Update the value of the pointer first
+     */
+    nodeType *first = nullptr; //1
+    nodeType *newNode=nullptr; //temp node to create and add a new node into the list
+    int num;
+    
+    // create temp node with data
+    cout << "Enter some numbers ending with -999: ";
+    cin >> num;
+    while(num != -999)
+    {
+        newNode = new nodeType; // 2.a.
+        newNode->info = num; // 2.b store num into info
+        newNode->link = first; // 2.c
+        first = newNode; // 2.d update the head pointer of the list
+        cin >> num;
+    }
+    return first;
+}
+
+// function to traverse each node starting from head and print the value stored
+// in the node
+void traverseLinkedList(nodeType *head)
+{
+    nodeType *currentNode = head;
+    while (currentNode != nullptr)
+    {
+        cout << currentNode->info << " ";
+        currentNode = currentNode->link;
+    }
+    cout << endl;
+}
+
+// Recursively print linkedList in reverse order
+void reversePrint(nodeType *current)
+{
+    if(current != nullptr)
+    {
+        reversePrint(current->link); // print the tail
+        cout << current->info << " "; // print the node
+    }
+    //cout << endl;
+}
+
+// Search linked list return true if data is found
+bool search(nodeType *current, int data)
+{
+    bool found = false;
+    while(current !=nullptr and !found)
+    {
+        if(current->info == data)
+            found = true;
+        else
+            current = current->link;
+    }
+    return found;
+}
+
+int main(int argc, char *argv[])
+{
+    nodeType *first = nullptr;
+    first = buildListForward();
+    cout << first->link->info << endl; // print 2nd node's info
+    cout << first->link->link->info << endl; // print 3rd node's info
+    
+    traverseLinkedList(first);
+    
+    // insert a new node in between first and second nodes
+    // Let say p points to the first node
+    nodeType *p = first;
+    // create and initialize new node to add to add
+    nodeType *newNode = new nodeType;
+    int data = 1000;
+    newNode->info = data;
+    newNode->link = p->link;
+    p->link = newNode;
+    cout << " After adding node with 1000 into the list:" << endl;
+    //reversePrint(first);
+    traverseLinkedList(first);
+    if (search(first, data))
+    {
+        cout << data << " found!" << endl;
+    }
+    else
+        cout << data << " NOT found!" << endl;
+    
+    // delete an existing node
+    // Let say p points the node you want to delete
+    p = first->link->link->link; // forth node in the link
+    //p->link = p->link->link; // remove the node from the list, however
+    // this node is dangling, i.e., memory leak
+    nodeType *q = first->link->link;
+    q->link = p->link;
+    delete p;
+    cout << " After deleting  the list:" << endl;
+    traverseLinkedList(first);
+    
+    traverseLinkedList(first);
+    first = buildListBackward();
+    traverseLinkedList(first);
+    
+    
+    cin.get();
+    cin.get();
+    return 0;
+}
+_____________________________________________________________________________________________________
+nodeType * createForwardLinked List()
+{
+	nodeType *first = nullptr, *last=nullptr;
+	nodeType *newNode;
+
+	newNode = newnodeType;
+	newNode->data = num;
+newNode->link = nullptr;
+cout<<"enter some numbers ending with -999"<<endl;
+while(num!=-999)
+{
+	newNode=new nodeType;
+	newNode->info= num;
+	newNode->link=nullptr;
+
+	if (first==nullptr)//check if node is empty
+	{//make the first and last node point to the new node
+		first=newNode;
+		last=newNode;
+	}
+	else//list is not empty
+	{
+		last->link=newNode;//append newNode at the end of the list
+		last=newNode; //updatethe last node by pointing it to the newNode
+	}
+cin>>num;
+}
+return first;
+}
+void traverseLinkedList(nodeType *current)
+{
+	while (current!= nullptr)
+	?{
+		cout<<current->data<<" ";?
+		current=current->link;
+	}
+}
+void printReverse(nodeType *current)
+{
+	if(current!=nullptr)
+	{
+		printReverse(current->link);
+		cout<<current->data<<" ";
+		return current;
+	}
+}
+down()
+{
+	cout<<endl;
+}
+bool search(nodeType *current, int item)
+{
+	bool found=false;
+	while(current !=nullptr&&!found)
+	{
+		if(current->==item)
+			found true;
+	
+	else
+		current=current->link
+	}
+	return found;
+}
+int main()
+{
+	nodeType *first = createForwardLinkList();
+	traverseLinkedList(first);
+	down();
+	nodeType *p=first;
+	nodeType *newNode=new nodeType;
+	newNode->data=100;
+	newNode->link=p;
+	printReverse(first);
+	down();
+int item=5;
+if(search(first, item))
+	cout<<item<<" is found!\n";
+else
+cout<<item<< " is NOT found!\n";
+	cin.get();
+	cin.get();
+	return 0;
+	
+}
+======================================================================================================
+++++++++++++++++unorderds link list++++++++++++++
+
+while (current!= nullptr)
+{
+	cout<<current->info<<" ";
+	current=current->link;
+}//where the head is 2000 and current =head.
+//---insertion----
+
+newNode= new nodeType;
+newNode->info= X //some hard coded or input number
+newNode->link = p->link;
+p->link=newNode
+//To insert you must point to the node ahead of the new node and then have the prior one
+//point to it otherwise you will lose all data.
+
+//Create two pointers pointing at two nodes
+p->link=newnode; 
+newnode->link=q;
+//---Deletion---
+p->link=p->link->link;
+//skips the node but doesnt delete it at that point.
+int *p=34;
+int *q=65;
+p=q->link;
+q->link=p->link;
+delete p;
+// p points to 34, then skips 34, and then deletes it without causing a memory leak.
+-----------------------------------------------------------------------------------------------------------
+
+

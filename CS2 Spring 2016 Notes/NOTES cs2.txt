@@ -1,0 +1,448 @@
+#include <iostream>
+#include <string>
+#include <cstudio>
+
+using namespace std;
+
+int main ()
+{
+char name[20]= "John Doe";
+int num=100;
+char c='A';
+double num1= 10.5;
+
+string name ="john";
+int *numPointer;
+numpointer =&num;
+
+printf("value of num=%d\n" , num);
+printf("address of num=%d\n" , &num);
+printf("value of c =%c\n" , c);
+printf("address of c =%d\n" , &c);
+printf("value of num1 =%d\n" , num1);
+printf("address of num1=%d\n" , &num1);
+printf("value of name=%s\n" , name.c_str());
+printf("address of name=%d\n" , &name);
+printf("value of numPointer=%d\n" , numPointer);
+printf("address of numPointer=%d\n" , *numPointer);
+
+//  * able to access number that is being pointed to
+*numPointer= 200;
+cout << "num = "<< num<<endl; (num=200)
+
+//pointervar = newtype;
+//          =newtype[];
+
+int *ointer = nullptr; // 0, NULL
+pointer = new int; // allocate some memory space in heap and return that address
+printf("value pointed to by pointer = "); // address of the heap
+
+*pointer = 5000;
+cout << "value pointed to by pointer = " << *pointer << endl; (5000)
+
+<-------------------------------------------------------------------------------------------------------------------->
+
+#include <iostream>
+#include <string>
+#include <cstudio>
+
+using namespace std;
+
+int main()
+{
+int num=100;
+int *p;
+p=&num;
+
+cout <<&num<<endl;		// address of num in memor &num = p
+cout <<p<<endl;			// address of num in memory
+cout <<*p<<endl;		//value pointed to by p, num (num=*p)
+cout <<&p<<endl;		//address of p in memory
+// * signifies a pointer variable pointing to location in memory rather then given value
+
+system ("pause");
+return 0;
+}
+
+<----------------------------------------------------------------------------------------------------------------------->
+#include <iostream>
+#include <string>
+#include <cst<dio>
+
+using namespace std;
+
+int main()
+{
+int num=100;// memory allocated in stack
+int *p;
+char *c = nullptr;
+p= new int;// dynamic call allocating memor in heap during runtime
+c = new char[20];
+strcpy(c, "Gelford Hughes");
+string *name;
+name = new string;
+*name = "Gelfrey Manly";
+double *num= nullptr;
+num = new double;
+*num = 100.5;
+int list[10];
+int *plist=nullptr;
+plist= new int[10];
+plist [0]=100;
+cout<<"plist[10] = "<<plist[0]<<endl;
+
+
+system ("pause");
+return 0;
+}
+
+<==================================================================================================================================>
+
+
+#include <iostream>
+#include <string>
+#include <cstdio>
+
+using namespace std;
+
+int main()
+{
+int num;
+const int max=1000; //creates 4000 bytes of storage for this max int.
+
+
+//int ar[max];
+//cout<<ar<<endl;
+
+
+
+cout<< " enter how many values you want to store.";
+cin>>num;
+int *list;
+//while (int i)
+list=new int[num];
+int i=0;
+while (i<num)
+{
+cout<< " enter a number: ";
+cin>> list[i];
+i++;
+}
+
+for (int i=0; i<num; i++)
+	printf("list[%d] = %d\n", i, list[i]);
+
+//int *list1 = list; shallow copy but cannot copy full array
+int *list1 = new int[num];
+for(int i=0; i<num; i++)
+	list1[i]=list[i];
+
+//list[0]=1000;
+
+for (int i=0; i<num; i++)
+	printf("list[%d] = %d\n", i, list[i]);
+
+cout<<list[0]<<endl;
+
+system ("pause");
+return 0;
+}
+
+
+<===========================================================================================================================>
+/* Demo code */
+
+//
+//  copyConstructor.cpp
+//  Shallow Vs Deep Copy Example
+//
+//  Created by Ram Basnet on 02/13/16.
+//  Copyright © 2016 Ram Basnet. All rights reserved.
+//
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Test
+{
+public:
+    int nums[2]; //array
+    int *dyNums; //dynamic array
+    Test()
+    {
+        nums[0] = 1;
+        nums[1] = 1;
+        dyNums = new int[2];
+        dyNums[0] = 2;
+        dyNums[1] = 2;
+    }
+    //copy constructor... lets you do the deep copy
+    Test(const Test &otherObject)
+     {
+     dyNums = new int[2];
+// the 2 is the size where as long as the size is the same you will be able to copy it into the dynamic array
+
+     for(int i=0; i<2; i++)
+     dyNums[i] = otherObject.dyNums[i];
+     }     
+//similar to other constructors but copies another object you are copying from to the object it is referencing
+//
+    ~Test()
+     {
+	delete[] dyNums;
+//prevents memory leak.
+     }	
+};
+
+int main()
+{
+    Test a;
+    cout << "nums of a: " <<  a.nums[0] << " " << a.nums[1] << endl;
+    Test b = a; //member wise copy of data from a to b
+    cout << "nums of b: " << b.nums[0] << " " << b.nums[1] << endl;
+    cout << "b's nums values are modified" << endl;
+    b.nums[0] = 100;
+    b.nums[1] = 200;
+    cout << "after b's nums values are modified" << endl;
+    cout << "nums of b: " << b.nums[0] << " " << b.nums[1] << endl;
+    cout << "nums of a: "<< a.nums[0] << " " << a.nums[1] << endl;
+    cout << "above output shows deep copy of nums values from object a to object b." << endl;
+    cout << " a and b have their own copy of nums variable and values. " << endl
+    << "As a result when b's nums are modified a's nums are NOT modified!" << endl;
+    
+    cout << "dyNums of a: " << a.dyNums[0] << " " << a.dyNums[1] << endl;
+    cout << "dyNums of b: " << b.dyNums[0] << " " << b.dyNums[1] << endl;
+    cout << " dyNums modified in b " << endl;
+    b.dyNums[0] = 100;
+    b.dyNums[1] = 200;
+    cout << "after b's dyNums are modified..." << endl;
+    cout << "dyNums of b: " << b.dyNums[0] << " " << b.dyNums[1] << endl;
+    cout << "dyNums of a: " << a.dyNums[0] << " " << a.dyNums[1] << endl;
+    cout << "above output shows shallow copy of dyNums values from object a to object b." << endl;
+    cout << " a and b have their own copy of dyNums variable, "
+    << "BUT they both point to the same memory location and hence the same values. " << endl
+    << "As a result, when b's dyNums are modified a's dyNums are ALSO modified, which could lead to problems..." << endl;
+    cout << "So for pointer variables we need to do deep copy" << endl;
+    cout << "Uncomment copy constructor that copies deep copy of dynamic array dyNums" << endl;
+    cout << "Rerun the program again and notice the difference..." << endl;
+    
+    cin.get();
+    return 0;
+}
+
+
+<=======================---------------------------===============================--------------------------======================>
+
+
+// Example program of a memory leak,
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main()
+{
+int *p = new int;
+//you are changing the pointers definition while keeping the old memory.
+// in order to fix this problem you must use delete
+*p=100;
+cout<< *p<<endl;
+delete p;// if you use it and you dont need it any more you MUST delete it.
+p= new int;
+*p=200;
+cout<<*p<<endl;
+cout<<p<<endl;
+
+
+
+system("pause");
+}
+
+<=========================================================================================================>
+3 things about pointer
+
+
+1. value its pointing too,
+2. value it has
+3. 
+
+
+
+if you make pointer pass by reference you can change the address and value
+
+pass by value can only change the value of the pointer and NOT the address
+
+
+// Example program
+#include <iostream>
+#include <string>
+using namespace std;
+
+
+void print(int *&p, int len)
+{
+    int i=0;
+ for(i=0; i<4; i++)
+    {
+    cout<<*p<<endl;
+    *p=*p+1;
+    p++;
+    }
+}
+int main()
+{
+    
+    int list[4]={10, 20, 30, 40};
+    int *p=list;
+    //int i;
+    int *p1= new int;
+    *p1=100;
+    print(p1, 1);
+    if(p==list)
+    {
+        cout<<p<<" and "<< list<<" are equal value\n";   
+    }
+    print(p, 4);
+ 
+   
+    return 0;
+    
+}
+
+
+<==============================================================================================================================>
+
+//struct version
+// Example program
+#include <iostream>
+#include <string>
+using namespace std;
+
+struct RType
+{
+    double l, w;
+};
+void print (RType *r)
+{
+ cout<<r->l<<endl;   
+    cout<<r->w<<endl;
+}
+int main()
+{
+ RType r;
+ r.l=100;
+ r.w=50;
+ RType *rPtr = &r;//address of RType r
+ cout<< rPtr->l<<endl;
+ cout<<rPtr->w<<endl;
+ 
+ RType *r1 = new RType;
+   r1->l=10;
+   r1->w=5;
+   print(r1);
+    return 0;
+    
+}
+
+//Class format
+
+// Example program
+#include <iostream>
+#include <string>
+using namespace std;
+
+class RType
+{
+    public:
+    double l, w;
+    void print()
+    {
+        cout<<this->l<<endl;				//Incredible similarities between the two
+        cout<<this->w<<endl;
+    }
+};
+void print (RType *r)
+{
+ cout<<r->l<<endl;   
+    cout<<r->w<<endl;
+}
+int main()
+{
+ RType r;
+ r.l=100;
+ r.w=50;
+ RType *rPtr = &r;//address of RType r
+ cout<< rPtr->l<<endl;
+ cout<<rPtr->w<<endl;
+ 
+ RType *r1 = new RType;
+   r1->l=10;
+   r1->w=5;
+  (*r1).print();
+    return 0;
+    
+}
+
+<+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++>
+
+
+VECTOR!!!!!
+// Example program
+#include <iostream>
+#include <string>
+#include <vector>
+using namespace std;
+
+int main()
+{
+vector<int> myvector;
+int myint;
+cout<<"vector size "<<myvector.size()<<endl;
+cout<<"please enter some integers (enter 0 to end):\n";
+
+do
+{
+    std::cin>>myint;
+    myvector.push_back(myint);
+} while(myint);
+
+std::cout<<"myvector stores "<< int(myvector.size())<< "numbers.\n";
+cout<< "vector size "<< myvector.size()<<endl;
+while (!myvector.empty())
+{
+    cout<<myvector.back()<<endl;
+    myvector.pop_back();// will delete last element
+}
+return 0;
+
+}
+// Example program
+#include <iostream>
+#include <string>
+#include <vector>
+using namespace std;
+
+int main()
+{
+vector<int> myvector;
+int myint;
+cout<<"vector size "<<myvector.size()<<endl;
+cout<<"please enter some integers (enter 0 to end):\n";
+
+do
+{
+    std::cin>>myint;
+    myvector.push_back(myint);
+} while(myint);
+
+std::cout<<"myvector stores "<< int(myvector.size())<< "numbers.\n";
+cout<< "vector size "<< myvector.size()<<endl;
+for (unsigned int i=0; i<myvector.size(); i++)
+{
+    cout<<myvector.back()<<endl;
+    myvector.pop_back();// will delete last element
+}
+return 0;
+
+}
+<+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++>

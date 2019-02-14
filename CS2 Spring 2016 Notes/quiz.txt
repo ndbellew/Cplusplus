@@ -1,0 +1,19 @@
+Quiz Review
+
+Linked List
+	- array
+		What kind of data structure it is, how to access list, head and tail, how to traverse list
+	
+	- Stacks
+		-after pushin and popping what is outputted
+Sorting Algorithms
+
+searching, in sequential and binary
+-key comparisons, how many are done.
+
+dealing with postfix to infix notation
+
+two programs
+sorting and search problem
+110 possible points
+

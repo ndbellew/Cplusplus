@@ -1,0 +1,80 @@
+							*S*T*A*C*K*
+
+std::stack
+template <class T, class Container = deque<T> > class stack;
+LIFO stack
+Stacks are a type of container adaptor, specifically designed to operate in a LIFO context (last-in first-out),
+ where elements are inserted and extracted only from one end of the container.
+
+stacks are implemented as containers adaptors, which are classes that use an encapsulated object of a specific 
+container class as its underlying container, providing a specific set of member functions to access its elements. 
+Elements are pushed/popped from the "back" of the specific container, which is known as the top of the stack.
+
+The underlying container may be any of the standard container class templates or some other specifically designed
+ container class. The container shall support the following operations:
+empty
+size
+back
+push_back
+pop_back
+
+The standard container classes vector, deque and list fulfill these requirements. By default, if no container class 
+is specified for a particular stack class instantiation, the standard container deque is used.
+
+Template parameters
+T
+Type of the elements.
+Aliased as member type stack::value_type.
+Container
+Type of the internal underlying container object where the elements are stored.
+Its value_type shall be T.
+Aliased as member type stack::container_type.
+______________________________________________________________________________________________________________________
+Stack-> A FILO(LIFO) data structure in which elements are inserted/deleted from only one end.
+Operations 
+->clear- remove all data
+->push-add a piece of data
+->pop-remove piece of data
+->isEmpty-check if empty
+->isFull-check if full
+->top look at top of Stack
+
+#include <iostream>
+#include "ArrayStack.h"
+
+using namspace std;
+int main()
+{
+	ArraySTack<int> stack;
+	stack.push(100);
+	stack.push(50);
+	stack.push(500)
+	ArrayStack<int> stack1=stack;//deep copy, copy constructor
+
+	while(!stack1.isEmpty())
+	{
+		cout<<stack1.top()<<" ";
+		stack1.pop();
+	}
+cout<<endl;
+cout<<stack.top()<<" ";
+
+cin.get();
+return 0;
+}
+===============================================================================================
+postfix
+
+10+2*5=20->infix notation		a+b*c
+
+
+prefix/polish notation ->  +10 2 = 12 
+
+(reverse polish notation)
+postfix/RPN notation  -> 10 2 = 12; a b c * + -> a(b*c)+ -> a d + -> a+d = e;
+
+stack uses posftix/RPN notation for doing mathematic equations:
+-Scan the expression from left to right, when an operator is found back up to get the required amount of operands. preform the operation and continue
+6 3 +2 * = //18
+
+push 6, push 3. pop stack twice add 2 values, push 9, push 2, pop stack twice, multiply 2 values, push 18, pop stack and print.

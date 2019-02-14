@@ -1,0 +1,359 @@
+Searching and Sorting Algorithms Chapter 18||
+======================
+
+Search Algorithms:
+
+1) Linear Search- Start at beginning and search through entire "list" until you find what you were looking for.
+	-1 Successful case
+		A. Best Case-first
+		B. Worst Case-last
+		C. Average Case - everything in between
+	-2 Unsuccessful case
+		-
+2)Sequential Search
+- like linear search, but a little bit better.
+int seqSearch(const Type list[], int length, const Type &item)
+{
+int loc;
+bool found=false;
+loc=0
+while(loc<length&& !found)
+{
+if(list[loc] == item)
+	found=true;
+else
+	loc++;
+}
+if(found)
+	return loc;
+else
+	return -1;
+}
+-----------------------------------------------------------
+3)Binary Search
+-Must be sortted
+- the Divde and Conquer method
+-cuts list in half over and over until it finds the area the value inhibits and then 
+searches like sequential but only in that area.
+ A. if list L has 1024 itmes at most it will use 11 iterations. making 22 key 
+comparisons using the formula
+2log[2]n+2
+		- Sequential would use 512 key comparisons to find x if it were in L.
+	if(list[mid] == searchItem)
+	else if(list[mid]<searchItem)
+
+int binarySearch(const Type list[], int lenght, const Type &item)
+
+{
+int first = 0;
+int last=length-1;
+int mid;
+bool found = false;
+while (first<=last && !found)
+{
+	mid=(first +last)/2;
+	if(list[mid] == item)
+		found=true;
+	else if(list[mid]>item)
+		last=mid-1;
+	else
+		first=mid+1;
+}
+if(found)
+return mid;
+else return -1;
+}
+--------------------------------------------------------------------------
+BIG O NOTATION
+Big-O notation
+-Asymptotic: the study of the function f as n becomes larger and larger without bound
+-let f and g be real-valued, non-negative functions
+-f(n) is Big-O of g(n), written f(n)=O(g(n)) if there are constants c and n[0] such that
+ f(n)<=cg(n) for all n>=n[0]
+g(n)
+
+1<=log[2]n<=n<=nlog[2]n<=n^2<=2^n
+---------------------------------------------------
+sorting algorithms
+------------------------------------------------
+1) bubble sort
+-worst case - O(n^2)
+-best case - O(n)
+- average case- O(n^2)
+-swaps insed of 2 loops
+-everyone of the inner loops takes on number to its correct spot(larger->end)
+for(int i=0; i<n; i++)
+for(int j=0; j<n-1; j++)
+{
+	if(index>index+1)
+	Swap(index, index+1)
+
+}
+---------------------------------------------------------
+2) Selection Sort
+-rearrange list by selecting an element and moving it to its proper position
+-find the smallest (largest) element and move it to the beginning (end) of the list
+- can also be applied to linked lists
+-best case- O(n^2)
+-worst case-O(n^2)
+-average case-O(n^2)
+
+int minLocation(elemType list[], int first, int last)
+{
+int loc, minIndex;
+minIndex=first;
+for (loc=first+1; loc<=last; loc++)
+	if(list[loc]<list[minIndex])
+		minIndex=loc;
+return minIndex
+}
+void swap(elemType list[], int first, int second)
+{
+elemType temp;
+temp=list[first];
+list[first]=list[second];
+list[second]=temp;
+}
+void selectionSort(elemType list[], int length)
+{
+int loc, minIndex;
+for(loc=0;loc<length; loc++)
+{
+minIndex=minLocation(list, loc, length-1);
+swap(list
+}
+}
+---------------------------------------
+3) Insertion Sort: Array-BAsed Lists
+- sorts list by moving each element to its propoer place in the sorted portion of the list
+-forms a sorted and unsorted list and places elements in correct place
+	- pulls a copy of element out, moves list forwared, adds copy in, deletes original copy
+-for loop execute4s n-1 times
+best case-key comparisons: n-1=O(n)
+worse case: for each for iteration, if statement evalutes to true
+- key comparions 1+2+3+4..+(n-1)=n(n-1)/2=O(n^2)
+-Average number of key comparisons and of item assignments: 1/4n^2+O(n)=O(n^2)
+
+void insertionSort(elemType list{}, int lenght)
+{
+	for(int firstOutOfOrder = 1; firstOutOfOrder<length; firstOutOfOrder++)
+		if(list[firstOutOfOrder]<list[firstOutOfOrder-1])
+{
+		elemType temp=first[firstOutOfOrder];
+		int location= firstOutOfOrder;
+
+
+
+		do
+		{
+			list[location]=list[location-1]
+			location--;
+
+
+		}while(location>0&&list[location-1]>temp);
+		list[location = temp;
+}
+
+}
+----------------------------------------
+4) Lower Bound on Comparison-Based Sort Algorthms
+I. Trees.
+A. Comparison Tree-graph used to trace the execution of comparison-based algorithm
+- let L be list of n disticnt elements; n>0
+for any ja dk k where 1<=j<=n, 1<=k<=n,
+either L[j]<L[k] or L[j]>l[k]
+B. Binary Tree
+- each comparison has two outcomes
+C. Node
+- Represents a comparison
+-Labeled as j:k (comparison of L[j] with L[k])
+-ifL[j]<L[k], follow the left branch; otherwise, follow the right branch
+D. Leaf
+- represents final ordering of the nodes
+E. Root
+-the top node
+F. Branch
+-line that connects two nodes
+G. Path
+-sequence of branches from one node to another
+-----------------------------------------------
+5)Quick Sort
+-the list is partitioned into two sublists
+- each list is then sorted
+- sorted sublists are combined into one list in sucha a way that the combined list is sorted
+- all of the sorting work occurs during the paritioning of the list
+A.Pivot
+-pivot element is chosen to divide the list into
+	-  lowerSublist and upperSublist
+- The elements in lowerSublist are<pivot
+- The elements in upperSublist are>=pivot
+a. Pivot can be chosen in several ways
+-ideally, the pivot divides the list into two sublists of nearly-equal size
+B. PArition Algorithm
+	- Assums that pivot is chosen as the middle element of the list
+	1. determine pivot; swap it with the first element of the lsit
+	2. for the remaining element in the list:
+		- if the current element is less than pivot, (A) increment smallIndex, and (B) swap current element with element 
+	   	  pointed by small index
+-swap the first element(pivot), with the array element pointed to by smallIndex
+BEST CASE- O(nlogn)
+WORST CASE- (n^2/2) - (n/2)=O(n^2)
+AVERAGE CASE- (1.39)nlog[2] n + O(n)=O(nlog[2]n)
+
+int partition(elemType list[], int first, int last)
+{
+	elemType pivot;
+	
+	int index, smallindex;
+
+	swap(list, first, (first+last)/2);
+	pivot = list[first];
+	smallIndex=first;
+
+	for(index = first+1; index<=last; index++)
+		if(list[index]<pivot)
+			{
+				smallIndex++;
+				swap(list, smallIndex, index);
+			}
+	swap(list, first, smallIndex);
+
+	return smallIndex;
+}
+//calling quicksort recursively
+void recQuickSort(elemType list[], int first, int last)
+{
+	int pivotLocation;
+	
+	if(first<last)
+	{
+	    pivotLocation=partition(list, first, last);
+	    recQuickSort(list, first, pivotLocation-1);
+	    recQuickSort(list, pivotLocation+1, last);
+	}
+
+}
+
+void quickSort(elemtype list[], int length)
+{
+	recQuickSort(list, 0, length-1);
+}
+----------------------------------------------------------------
+6) Merge Sort
+worst case O(nlog[2]n)
+average case O(nlog[2]n)
+using lists
+VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
+nodeType<type>* unorderedLinkedList<Type>::
+mergeList(nodeType<Type>* first1, nodeType<Type>* first2)
+{
+nodeType<Type> *lastSmall;
+nodeType<Type> *newHead;
+if(first1==nullptr)
+return first2;
+else if (first2==nullptr)
+return first1;
+else
+{
+if (first1->info<first2->info)
+{
+newHead = first1;
+first1=first->link;
+lastSmall=newHead;
+}
+else
+newHead=first2; 
+first2=first2->link;
+lastSmall=newHead;
+}
+
+while(first1 != nullptr && first2 != nullptr)
+{
+	if (first1->info < first2->info)
+	{
+		lastSmall->link=first1;
+		lastSmall=lastSmall->link;
+		first1=first1->link;
+	}
+	else
+	{
+		lastSmall->link=first2;
+		lastMsall=lastSmall->link;
+		first2=first2->link;
+	}
+}
+if(first1==nullptr)
+	lastSmall->link=first2;
+else
+	lastSmall->link=first1;
+return newHead;
+}
+}
+
+
+void unorderedLinkedList<type> ::recMergSort(nodeType<type> * &head)
+{
+	nodeType<Type> *otherHead;
+	if(head!=nullptr)
+		if(head->link != nullptr)
+{
+	divideList (head, otherHead);
+	recMergeSort(head)
+	recMergeSort(otherHead);
+	head=mergeList(head, otherHead);
+}
+}
+
+void unorderedLinkedList<type> ::mergeSort()
+{
+recMergeSort(first);
+if(first==nullptr);
+last=nullptr;
+else
+{
+last=first;
+while(last->linke!=nullptr)
+last=last->link;
+}
+}
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+====================================================================================
+Binary Trees
+
+- a Binary tree T is either empyt or has these properties
+-has a root node
+- has two sets of nodes: left subtree L[T] and right subtree R[T]
+-L[t] and R[t] are binary trees
+
+Every node has at most two children
+a node:
+-stores its own information
+-keeps track of its left subtreee and rigt subtree using pointers
+	lLink and rLink pointers
+* A pointer to the rot node of the binary tree is stored outside the tree in a 
+pointer variable
+
+
+Leaf- Node that has no left and right children
+U is Parent of V if there is a branch from U to V
+there is a unique path from root to every node
+Length of a path- number of branches on specific path from root the the node
+-root node level is 0
+heigth of a binary tree: nuber of nodes on the longest path from the root to
+ a leaf.
+* Binary tree is a dynamic data structure
+	-memory is allocated/deallocated at runtime
+* using just the value of the pointer of the root node makes a shallow copy 
+of the data
+* to make an identical copy, must create as many nodes as are in the 
+original tree
+	- use a recursive algorithm.
+* Insertion, deletin, and loopup operations require traversal of the tree
+- must start at the root node
+*Two choices for each node:
+- visit the node first
+- Visit the node's subtrees first
+*inorder traversal 
+- Traverse the left subtree
+- Visit the node
+- Traveres the right subtree

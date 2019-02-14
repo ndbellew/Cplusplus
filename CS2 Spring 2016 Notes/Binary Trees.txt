@@ -1,0 +1,102 @@
+Binary Trees
+
+- a Binary tree T is either empyt or has these properties
+-has a root node
+- has two sets of nodes: left subtree L[T] and right subtree R[T]
+-L[t] and R[t] are binary trees
+
+Every node has at most two children
+a node:
+-stores its own information
+-keeps track of its left subtreee and rigt subtree using pointers
+	lLink and rLink pointers
+* A pointer to the rot node of the binary tree is stored outside the tree in a 
+pointer variable
+Leaf- Node that has no left and right children
+U is Parent of V if there is a branch from U to V
+there is a unique path from root to every node
+Length of a path- number of branches on specific path from root the the node
+-root node level is 0
+height of a binary tree: number of nodes on the longest path from the root to
+ a leaf.
+* Binary tree is a dynamic data structure
+	-memory is allocated/deallocated at runtime
+* using just the value of the pointer of the root node makes a shallow copy 
+of the data
+* to make an identical copy, must create as many nodes as are in the 
+original tree
+	- use a recursive algorithm.
+* Insertion, deleting, and lookup operations require traversal of the tree
+- must start at the root node
+*Two choices for each node:
+- visit the node first
+- Visit the node's subtrees first
+*inorder traversal 
+- Traverse the left subtree
+- Visit the node
+- Traveres the right subtree
+*Preorder Traversal
+-visit node
+-traverse left subtree
+travers the right subtree
+*Postorder traversal
+-Traverse the left subtree
+-Traverse the right subtree
+-visit the node
+*Listing of nodes produced by traversal type is called:
+-inorder sequence
+(DFBACGE) [page 15 of BinaryTree_ch19]
+-preorder sequence
+(ABDFCEG)
+-postorder sequence
+(FDBGECA)
+*Typical operations:
+-determine whether the binary tree is empty
+-search the binary tree for a particular item
+-insert an item in the binary tree
+- delete an item from the binary tree
+- find the height of the binary tree
+-Find the number of nodes in the binary tree
+- find the number of leaves in the binary tree
+-traverse the binary tree
+-Copy the binary tree
+
+<-------------==================-----------------================----------->
+
+
+BST - Delete Operation
+* the delete operation has four cases:
+1. The Node to be deleted is a leaf
+2.the node to be deleted has no left subtree
+3. The Node to be deleted has no right subtree
+4. The Node to be deleted has nonempty left and right subtrees
+*Must find the node containing th eitem (if any) to be deleted, then delete the node
+ - must maintain BST after deleting a node
+* Find the Minimum value in the right subtree;
+* replace value of the node to be romved with found minimum. now, right subtree contains a
+duplicate.
+* Apply delete to the right subtree to remove a duplicate.
+-------------------------------------------------------------
+* Average case behavior 
+- S(n) and U(n): number of comparisons in average successful and unsuccessful case, respectively
+U(n) =(aprox) 2.77log[2]n=O(log[2]n)or log n
+S(n) =(aprox) 2.77log[2]n=O(log[2]n)or log n
+* A node U is called the parent of a node V if there is a path from U to V
+* Level of a node: number of branches on the path from the root to the node
+-The level of the root node of a binary tree is 0
+- the level of the children of the root is 1
+* Height of a binary tree: number of nodes on the longest path from the root to a leaf.
+* Inorder traversal
+- Traverse left, visit node, traverse right
+*preorder traversal
+-visit node, traverse left, treaverse right
+* post order traversal
+- Traverse left, traverse right, visit node
+* In a binary search tree
+-Root node is larger than every node in left subtree
+- Root node is less than every node in right subtree
+
+
+
+
+
