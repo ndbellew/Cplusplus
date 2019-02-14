@@ -1,0 +1,36 @@
+Step 1: Declare The Strings
+Use getline
+How much wood would a wood chuck chuck, if a wood chuck could chuck wood?
+Rudolph, with your nose so bright, won't you guide our sleigh tonight?
+Over the river and through the woods, to grandmother's house we go.
+Step 2: Finding the Lengths of each line
+Using str.length()
+length = 73
+length = 70
+length = 67
+Step 3: Find the position of a specific character
+Using str.find(str)
+comma1= 38
+comma2= 7
+comma3= 36
+Step 4: Finding a specific Character
+Using an array
+ch1= c
+ch2= p
+ch3= d
+Step 5: Getting the substring from a specific location.
+Using str.substr(pos,len)
+substring one = if a wood chuck could chuck wood?
+substring two= with your nose so bright, won't you guide our sleigh tonight?
+substring three=to grandmother's house we go.
+step 6: Deleting Characters > based on position
+Using str.erase(pos,n)
+How much wood would a wood chuck chuck if a wood chuck could chuck wood?
+Rudolph with your nose so bright, won't you guide our sleigh tonight?
+Over the river and through the woods to grandmother's house we go.
+Step 7: Inserting Silly Messages.
+Using str.insert(pos,str)
+How much wood would a wood chuck chuckTGIT if a wood chuck could chuck wood?
+RudolphTGIT with your nose so bright, won't you guide our sleigh tonight?
+Over the river and through the woodsTGIT to grandmother's house we go.
+
