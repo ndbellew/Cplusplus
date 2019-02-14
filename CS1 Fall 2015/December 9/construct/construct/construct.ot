@@ -1,0 +1,40 @@
+//Step B: Printing box1 and box2
+Here is box1.
+This object has these dimensions : 
+Length = 0
+Width = 0
+Height = 0
+
+HERE IS BOX2!!!
+This object has these dimensions : 
+Length = 15.25
+Width = 10.5
+Height = 12
+
+//Step C: Set Box1 with new Width, Length, and Height!
+This object has these dimensions : 
+Length = 35.506
+Width = 24.25
+Height = 20.125
+
+//Step D: Volume of each box in Inches
+Box1 Volume (IN) = 17328 Cubic Inches
+Box2 Volume (IN) = 1921.5 Cubic Inches
+
+// Step E: Getting Volume in Cubic Feet
+Box1 Volume (FT) = 10.0278 Cubic Feet
+Box2 Volume (FT) = 1.11198 Cubic Feet
+
+//Step F: Getting Surface Area in Inches
+Box1 Surface Area (IN) = 4127.22 Sqaure Inches
+Box2 Surface Area (IN) = 938.25 Sqaure Inches
+
+//Step G: Getting Surface Area of Each Box in Feet!
+Box1 Surface Area (FT) = 28.6612 Sqaure Inches
+Box1 Surface Area (FT) = 6.51562 Sqaure Inches
+
+//Step H : Totals of Surface Areas for Presents
+The total amount of wrapping paper needed is 35.1769 Sq. Ft.
+
+//Step I: Adding Two Boxes together
+The total Volume of both planters is 11.1398 Cubic Feet!
