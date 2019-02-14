@@ -1,0 +1,11 @@
+﻿Build started 9/13/2016 8:23:22 PM.
+     1>Project "F:\CS2 Spring 2016\NBA Class\NBA Class\NBA Class.vcxproj" on node 2 (ClCompile target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\vc140.pdb" /Gd /TP /analyze- /errorReport:prompt Source.cpp
+         Skipping... (no relevant changes detected)
+         Source.cpp
+     1>Done Building Project "F:\CS2 Spring 2016\NBA Class\NBA Class\NBA Class.vcxproj" (ClCompile target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:00.70
