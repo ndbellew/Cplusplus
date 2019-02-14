@@ -1,0 +1,8 @@
+Time taken to read in then sort and swap 10,000 randomly generated numbers was 1.312 Second(s)
+  -65525.762    -47508.300    -20089.774     -8915.476     -3090.569
+         8.390      3467.668      9307.557     20793.647     47499.113
+
+Amount of compares was 99980001.000
+Amount of copies was 74324025.000
+Relative number of copies is 7432.403
+Relative number of compares is 9998.000
